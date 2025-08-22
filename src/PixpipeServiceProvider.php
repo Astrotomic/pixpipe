@@ -3,6 +3,7 @@
 namespace Astrotomic\Pixpipe;
 
 use Astrotomic\Pixpipe\Http\Responses\SymfonyResponseFactory;
+use Astrotomic\Pixpipe\Manipulators\Size;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -21,7 +22,6 @@ use League\Glide\Manipulators\Gamma;
 use League\Glide\Manipulators\Orientation;
 use League\Glide\Manipulators\Pixelate;
 use League\Glide\Manipulators\Sharpen;
-use League\Glide\Manipulators\Size;
 use League\Glide\Manipulators\Watermark;
 use League\Glide\Responses\ResponseFactoryInterface;
 use League\Glide\Server;
