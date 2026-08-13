@@ -2,7 +2,6 @@
 
 namespace Astrotomic\Pixpipe\Analyzers;
 
-use Intervention\Image\Colors\Rgb\Color;
 use Intervention\Image\Colors\Rgb\Colorspace as RgbColorspace;
 use Intervention\Image\Geometry\Point;
 use Intervention\Image\Interfaces\AnalyzerInterface;
@@ -41,11 +40,11 @@ class FocusPointAnalyzer implements AnalyzerInterface
         for ($y = 0; $y < $h; $y++) {
             $row = [];
             for ($x = 0; $x < $w; $x++) {
-                $c = Color::create($this->image->pickColor($x, $y)->toHex());
+                $c = $this->image->colorAt($x, $y)->toColorspace(RgbColorspace::class);
                 $r = $c->red()->value();
                 $g = $c->green()->value();
                 $b = $c->blue()->value();
-                $a = $c->alpha()->normalize(); // 0..1
+                $a = $c->alpha()->normalized(); // 0..1
 
                 // Perceived luminance (Rec. 709) with alpha weighting (transparent -> less relevant)
                 $y709 = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b; // 0..255
